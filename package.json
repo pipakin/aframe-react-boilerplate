@@ -8,7 +8,10 @@
     "aframe-bmfont-text-component": "^0.1.4",
     "aframe-react": "^3.4.0",
     "aframe-text-component": "^0.3.0",
-    "babel-polyfill": "^6.3.14"
+    "aframe-webvr-controller": "0.0.7",
+    "babel-polyfill": "^6.3.14",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   },
   "scripts": {
     "build": "webpack",

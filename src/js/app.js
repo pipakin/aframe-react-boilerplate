@@ -1,6 +1,7 @@
 import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-text-component';
+import 'aframe-webvr-controller';
 import 'babel-polyfill';
 import {Entity, Scene} from 'aframe-react';
 import React from 'react';
@@ -9,6 +10,7 @@ import ReactDOM from 'react-dom';
 import Camera from './components/Camera';
 import Text from './components/Text';
 import Sky from './components/Sky';
+import Controller from './components/Controller';
 
 class VRScene extends React.Component {
   constructor(props) {
@@ -32,6 +34,24 @@ class VRScene extends React.Component {
 >
           </a-cursor>
         </Camera>
+        <a-assets>
+          <a-asset-item id="vive-obj" src="/vive_controller/body0.obj"></a-asset-item>
+          <a-asset-item id="vive-mtl" src="/vive_controller/body0.mtl"></a-asset-item>
+          <a-asset-item id="vive-pad-obj" src="/vive_controller/trackpad0.obj"></a-asset-item>
+          <a-asset-item id="vive-pad-mtl" src="/vive_controller/trackpad0.mtl"></a-asset-item>
+          <a-asset-item id="vive-trigger-obj" src="/vive_controller/trigger0.obj"></a-asset-item>
+          <a-asset-item id="vive-trigger-mtl" src="/vive_controller/trigger0.mtl"></a-asset-item>
+          <a-asset-item id="vive-r-grip-obj" src="/vive_controller/r_grip0.obj"></a-asset-item>
+          <a-asset-item id="vive-r-grip-mtl" src="/vive_controller/r_grip0.mtl"></a-asset-item>
+          <a-asset-item id="vive-l-grip-obj" src="/vive_controller/l_grip0.obj"></a-asset-item>
+          <a-asset-item id="vive-l-grip-mtl" src="/vive_controller/l_grip0.mtl"></a-asset-item>
+          <a-asset-item id="vive-button-obj" src="/vive_controller/button0.obj"></a-asset-item>
+          <a-asset-item id="vive-button-mtl" src="/vive_controller/button0.mtl"></a-asset-item>
+          <a-asset-item id="vive-sys-button-obj" src="/vive_controller/sys_button0.obj"></a-asset-item>
+          <a-asset-item id="vive-sys-button-mtl" src="/vive_controller/sys_button0.mtl"></a-asset-item>
+          <a-asset-item id="vive-led-obj" src="/vive_controller/led0.obj"></a-asset-item>
+          <a-asset-item id="vive-led-mtl" src="/vive_controller/led0.mtl"></a-asset-item>
+        </a-assets>
 
         <Sky src="url(https://rawgit.com/aframevr/assets/gh-pages/360-image-gallery-boilerplate/img/sechelt.jpg)"/>
 
@@ -43,19 +63,8 @@ class VRScene extends React.Component {
         <Entity light={{type: 'ambient', color: '#888'}}/>
         <Entity light={{type: 'directional', intensity: 0.5}} position='-1 1 0'/>
         <Entity light={{type: 'directional', intensity: 1}} position='1 1 0'/>
-
-        <Entity
-          animation__rot={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-          animation__sca={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
-          geometry='primitive: box'
-          material={{color: this.state.color, opacity: 0.6}}
-          position='0 -0.5 -3'
-          onClick={this.changeColor.bind(this)}>
-          <Entity
-            animation__scale={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '2 2 2'}}
-            geometry='primitive: box; depth: 0.2; height: 0.2; width: 0.2'
-            material={{color: '#24CAFF'}}/>
-        </Entity>
+        <Controller vive-controller="0" />
+        <Controller vive-controller="1" />
       </Scene>
     );
   }
